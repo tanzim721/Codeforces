@@ -10,7 +10,27 @@ using namespace std;
 
 typedef vector<int> vi;
 typedef long long ll;
+const int mod = (int)1e7+7;
 
+void solve()
+{
+    int n;
+    cin>>n;
+    vi v(n);
+    for(int i=0;i<n;i++) cin>>v[i];
+
+    if( *max_element(v.begin()+1, v.end()-1)==1 || (v[1]%2=1 && n==3)){
+        cout<<"-1"<<endl;
+        return;
+    }
+    else{
+        ll ans=0;
+        for(int i=1;i<n-1;i++){
+            ans += (v[i]+1)/2;
+        }
+        cout<<ans<<endl;
+    }
+}
 int main()
 {
     faster();
@@ -20,22 +40,13 @@ int main()
     int t;
     cin>>t;
     while(t--){
-        int n;
-        cin>>n;
-        vector<int> v(n);
-        int mx;
-        for(auto &u : v) cin>>u;
-        mx = *max_element(v.begin(),v.end());
-        int an=-1;
-        for(int i=0;i<n;i++){
-            if(v[i]==mx && ((i && v[i-1]<v[i]) || (i+1<n && v[i+1]<v[i]))) an=i+1;
-        }
-        cout<<an<<endl;
+        solve();
     }
 
 
     return 0;
 }
+
 
 
 

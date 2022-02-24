@@ -10,7 +10,11 @@ using namespace std;
 
 typedef vector<int> vi;
 typedef long long ll;
-
+const int mod = (int)1e7+7;
+string s[100000];
+bool cmp(const string& a, const string& b){
+    return (a+b)<(b+a);
+}
 int main()
 {
     faster();
@@ -19,23 +23,18 @@ int main()
 
     int t;
     cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int> v(n);
-        int mx;
-        for(auto &u : v) cin>>u;
-        mx = *max_element(v.begin(),v.end());
-        int an=-1;
-        for(int i=0;i<n;i++){
-            if(v[i]==mx && ((i && v[i-1]<v[i]) || (i+1<n && v[i+1]<v[i]))) an=i+1;
-        }
-        cout<<an<<endl;
+    for(int i=0;i<t;i++){
+        cin>>s[i];
     }
-
+    sort(s, s+t, cmp);
+    for(int i=0;i<t;i++){
+        cout<<s[i];
+    }
+    cout<<endl;
 
     return 0;
 }
+
 
 
 

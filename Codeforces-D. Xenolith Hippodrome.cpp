@@ -7,32 +7,25 @@ using namespace std;
 
 #define faster() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define fraction(a) cout.unsetf(ios::floatfield); cout.precision(a); cout.setf(ios::fixed,ios::floatfield);
-
-typedef vector<int> vi;
-typedef long long ll;
-
+const int mod = (int)1e5+7;
+int mx[mod];
 int main()
 {
     faster();
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
 
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int> v(n);
-        int mx;
-        for(auto &u : v) cin>>u;
-        mx = *max_element(v.begin(),v.end());
-        int an=-1;
-        for(int i=0;i<n;i++){
-            if(v[i]==mx && ((i && v[i-1]<v[i]) || (i+1<n && v[i+1]<v[i]))) an=i+1;
+    int n,m;
+    cin>>n>>m;
+    while(n){
+        mx[n%m]++;
+        if(mx[n%m]==2){
+            cout<<"NO"<<endl;
+            return 0;
         }
-        cout<<an<<endl;
+        n /= m;
     }
-
+    cout<<"YES"<<endl;
 
     return 0;
 }

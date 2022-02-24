@@ -10,32 +10,29 @@ using namespace std;
 
 typedef vector<int> vi;
 typedef long long ll;
-
+stack<int> cnt;
 int main()
 {
     faster();
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
 
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int> v(n);
-        int mx;
-        for(auto &u : v) cin>>u;
-        mx = *max_element(v.begin(),v.end());
-        int an=-1;
-        for(int i=0;i<n;i++){
-            if(v[i]==mx && ((i && v[i-1]<v[i]) || (i+1<n && v[i+1]<v[i]))) an=i+1;
-        }
-        cout<<an<<endl;
-    }
+    string s;
+    cin>>s;
 
+    for(int i=0;i<signed(s.size());i++){
+        if(s[i]=='1') cnt.push(i);
+        else if(!cnt.empty()) cnt.pop();
+    }
+    while(!cnt.empty()){
+        s[cnt.top()] = '0';
+        cnt.pop();
+    }
+    cout<<s<<endl;
 
     return 0;
 }
+
 
 
 

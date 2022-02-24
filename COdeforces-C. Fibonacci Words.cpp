@@ -10,6 +10,7 @@ using namespace std;
 
 typedef vector<int> vi;
 typedef long long ll;
+typedef long double ld;
 
 int main()
 {
@@ -17,25 +18,22 @@ int main()
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
 
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int> v(n);
-        int mx;
-        for(auto &u : v) cin>>u;
-        mx = *max_element(v.begin(),v.end());
-        int an=-1;
-        for(int i=0;i<n;i++){
-            if(v[i]==mx && ((i && v[i-1]<v[i]) || (i+1<n && v[i+1]<v[i]))) an=i+1;
+    string s;
+    cin>>s;
+    for(int i=2;i<s.size();i++){
+        int a = (s[i-2]) - 'A';
+        int b = (s[i-1]) - 'A';
+        int as = (a+b)%26;
+        if( as != (s[i] - 'A') ){
+            cout<<"NO"<<endl;
+            return 0;
         }
-        cout<<an<<endl;
     }
-
+    cout<<"YES"<<endl;
 
     return 0;
 }
+
 
 
 
